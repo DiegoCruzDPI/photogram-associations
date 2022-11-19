@@ -32,7 +32,7 @@ RSpec.describe Comment, type: :model do
 end
 
 RSpec.describe Comment, type: :model do
-  describe "has a belongs_to association defined called 'photo' with Class name 'Photo' and foreign key 'owner_id'", points: 1 do
+  describe "has a belongs_to association defined called 'photo' with Class name 'Photo' and foreign key 'photo_id'", points: 1 do
     it { should belong_to(:photo).class_name("Photo").with_foreign_key("photo_id") }
   end
 end

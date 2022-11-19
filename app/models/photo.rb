@@ -15,6 +15,11 @@
 class Photo < ApplicationRecord
   # validates(:poster, { :presence => true })
 
+  belongs_to(:poster, {
+    :class_name => "User",
+    :foreign_key => "owner_id"
+  })
+
   # def poster
   #   my_owner_id = self.owner_id
 
@@ -25,6 +30,11 @@ class Photo < ApplicationRecord
   #   return the_user
   # end
 
+    has_many(:comments, {
+    :class_name => "Comment",
+    :foreign_key => "photo_id"
+  })
+
   # def comments
   #   my_id = self.id
 
@@ -32,6 +42,11 @@ class Photo < ApplicationRecord
 
   #   return matching_comments
   # end
+
+  has_many(:likes, {
+    :class_name => "Like",
+    :foreign_key => "photo_id"
+  })
 
   # def likes
   #   my_id = self.id
@@ -41,6 +56,11 @@ class Photo < ApplicationRecord
   #   return matching_likes
   # end
 
+ has_many(:fans, {
+    :through => :likes,
+    :source => :fan
+  })
+  
   # def fans
   #   my_likes = self.likes
     
@@ -54,6 +74,13 @@ class Photo < ApplicationRecord
 
   #   return matching_users
   # end
+
+
+  # ask Raghu about this line of code
+  has_many(:fan_list, {
+    :through => :fans,
+    :source => :user
+  })
 
   # def fan_list
   #   my_fans = self.fans

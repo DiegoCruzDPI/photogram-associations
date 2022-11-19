@@ -13,6 +13,10 @@
 class Comment < ApplicationRecord
   # validates(:commenter, { :presence => true })
 
+  belongs_to(:commenter, {
+    :class_name => "User",
+    :foreign_key => "author_id"
+  })
   # def commenter
   #   my_author_id = self.author_id
 
@@ -23,7 +27,11 @@ class Comment < ApplicationRecord
   #   return the_user
   # end
 
-  # def photo
+  belongs_to(:photo, {
+    :class_name => "Photo",
+    :foreign_key => "photo_id"
+  })
+    # def photo
   #   my_photo_id = self.photo_id
 
   #   matching_photos = User.where({ :id => my_photo_id })
@@ -33,3 +41,4 @@ class Comment < ApplicationRecord
   #   return the_photo
   # end
 end
+
